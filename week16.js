@@ -4,9 +4,8 @@
 
 function makeOne() {
 	const paragraph = document.getElementById('practicum');
-	//Ваш код
+	paragraph.innerHTML = document.forms.length;
 }
-
 document.querySelector('.b-1').addEventListener('click', makeOne);
 
 //Задание 2
@@ -15,7 +14,7 @@ document.querySelector('.b-1').addEventListener('click', makeOne);
 
 function makeTwo() {
 	const paragraphTwo = document.getElementById('practicum2');
-	//Ваш код
+	paragraphTwo.innerHTML = document.forms[0].getAttribute('name');
 }
 
 document.querySelector('.b-2').addEventListener('click', makeTwo);
@@ -26,7 +25,7 @@ document.querySelector('.b-2').addEventListener('click', makeTwo);
 
 function makeThree() {
 	const paragraphThree = document.getElementById('practicum3');
-	//Ваш код
+	paragraphThree.innerHTML = document.forms[document.forms.length - 1].getAttribute('name');
 }
 
 document.querySelector('.b-3').addEventListener('click', makeThree);
@@ -43,9 +42,15 @@ document.querySelector('.b-3').addEventListener('click', makeThree);
 //- Преобразуйте массив formNames в строку, разделив названия запятыми, с помощью метода join()
 //- Выведите полученную строку названий форм в элемент с id practicum4 при нажатии на кнопку
 
+const formNames = [];
 function makeFour() {
-	const paragraphFour = document.getElementById('practicum4');
-	//Ваш код
+	for (let i = 0; i < document.forms.length; i++) {
+		const name = document.forms[i].getAttribute('name');
+		formNames.push(name);
+		console.log(formNames);
+		const paragraphFour = document.getElementById('practicum4');
+		paragraphFour.innerHTML = formNames.join(', ');
+	}
 }
 
 document.querySelector('.b-4').addEventListener('click', makeFour);
@@ -57,7 +62,7 @@ document.querySelector('.b-4').addEventListener('click', makeFour);
 
 function makeFive() {
 	const paragraphFive = document.getElementById('practicum5');
-	//Ваш код
+	paragraphFive.innerHTML = document.forms.formThree.elements.length;
 }
 
 document.querySelector('.b-5').addEventListener('click', makeFive);
@@ -68,7 +73,7 @@ document.querySelector('.b-5').addEventListener('click', makeFive);
 
 function makeSix() {
 	const paragraphSix = document.getElementById('practicum6');
-	//Ваш код
+	paragraphSix.innerHTML = document.forms.formTwo.elements.length;
 }
 
 document.querySelector('.b-6').addEventListener('click', makeSix);
@@ -84,9 +89,17 @@ document.querySelector('.b-6').addEventListener('click', makeSix);
 //- Внутри цикла добавьте текущее название элемента формы (свойство name) в elementsList, добавляя дефис перед названием
 //- После цикла выведите текст с перечислением элементов в элемент с id practicum7, используя свойство textContent
 
+const paragraphSeven = document.getElementById('practicum7');
+const formTwoElements = document.forms[1].elements;
+let elementsList = '';
+const elementsNames = [];
 function makeSeven() {
-	const paragraphSeven = document.getElementById('practicum7');
-	//Ваш код
+	for (let i = 0; i < formTwoElements.length; i++) {
+		elementsNames.push(formTwoElements[i].name);
+		elementsList = '- ' + elementsNames.join(', - ');
+	}
+	paragraphSeven.textContent = elementsList;
+	console.log(elementsList);
 }
 
 document.querySelector('.b-7').addEventListener('click', makeSeven);
