@@ -107,9 +107,21 @@ document.querySelector('.b-7').addEventListener('click', makeSeven);
 //Задание 8
 //Выведите перечисление названий (name) всех элементов первой формы на экран. В задании 5 вы нашли их количество.
 
-function makeEight() {
-	const paragraphEight = document.getElementById('practicum8');
-	//Ваш код
+const paragraphEight = document.getElementById('practicum8');
+const formOneElements = document.forms[0].elements;
+let elementsListFormOne = '';
+const elementsNamesFormOne = [];
+
+makeEight = () => {
+	let i = 0;
+	do {
+		elementsNamesFormOne.push(formOneElements[i].name);
+		i++;
+	}
+	while (i < formOneElements.length);
+
+	elementsListFormOne = ' -' + elementsNamesFormOne.join(', - ');
+	paragraphEight.textContent = elementsListFormOne;
 }
 
 document.querySelector('.b-8').addEventListener('click', makeEight);
@@ -117,9 +129,18 @@ document.querySelector('.b-8').addEventListener('click', makeEight);
 //Задание 9
 //Найдите третью форму на странице. Выведите перечисление названий (name) всех элементов формы на экран.
 
-function makeNine() {
+makeNine = () => {
 	const paragraphNine = document.getElementById('practicum9');
-	//Ваш код
+	const formThreeElements = document.forms[2].elements;
+	const elementsNames = [];
+
+	for (i = 0; i < formThreeElements.length; i +=1) {
+	elementsNames.push(formThreeElements[i].name);
+	}
+
+	let elementsList = '';
+	elementsList = ' -' + elementsNames.join(', -');
+	paragraphNine.textContent = elementsList;
 }
 
 document.querySelector('.b-9').addEventListener('click', makeNine);
