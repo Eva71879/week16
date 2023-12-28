@@ -47,10 +47,9 @@ function makeFour() {
 	for (let i = 0; i < document.forms.length; i++) {
 		const name = document.forms[i].getAttribute('name');
 		formNames.push(name);
-		console.log(formNames);
-		const paragraphFour = document.getElementById('practicum4');
-		paragraphFour.innerHTML = formNames.join(', ');
 	}
+	const paragraphFour = document.getElementById('practicum4');
+	paragraphFour.innerHTML = formNames.join(', ');
 }
 
 document.querySelector('.b-4').addEventListener('click', makeFour);
@@ -93,6 +92,7 @@ const paragraphSeven = document.getElementById('practicum7');
 const formTwoElements = document.forms[1].elements;
 let elementsList = '';
 const elementsNames = [];
+
 function makeSeven() {
 	for (let i = 0; i < formTwoElements.length; i++) {
 		elementsNames.push(formTwoElements[i].name);
@@ -149,9 +149,12 @@ document.querySelector('.b-9').addEventListener('click', makeNine);
 //Выведите на экран значенеие radio кнопки третьей формы на странице
 //Подсказка: используйте коллекцию document.forms для доступа к формам, свойство elements для доступа к элементам формы и свойство value для получения значения radio кнопки
 
+//наверное, имелась ввиду четвертая форма - только в ней есть radio
+
 function makeTen() {
 	const paragraphTen = document.getElementById('practicum10');
-	//Ваш код
+	const radioValue = document.forms[3].elements[0].value;
+	paragraphTen.textContent = radioValue;
 }
 
 document.querySelector('.b-10').addEventListener('click', makeTen);
@@ -166,12 +169,27 @@ document.querySelector('.b-10').addEventListener('click', makeTen);
 //- Внутри цикла получите значение каждой опции с помощью свойства value и добавьте его в optionsValues
 //- Выведите значения опций на страницу
 
-function makeEleven() {
-	const paragraphEleven = document.getElementById('practicum11');
-	//Ваш код
+//переменная была объявлена мной в задании 8
+// const formOneElements = document.forms[0].elements;
+
+const paragraphEleven = document.getElementById('practicum11');
+console.log(formOneElements[2]);
+const select = formOneElements[2];
+let optionsValues = '';
+console.log(select[0].value);
+let selectValues = [];
+
+makeEleven = () => {
+	for (i = 0; i < select.length; i +=1) {
+		selectValues.push(select[i].value);
+	}
+	optionsValues = selectValues.join(', ');	
+	paragraphEleven.textContent = optionsValues;
 }
 
 document.querySelector('.b-11').addEventListener('click', makeEleven);
+
+
 
 //Задание 12
 //Выведите значения атрибутов id всех чекбоксов (количество: 3) из второй формы
