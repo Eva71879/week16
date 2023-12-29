@@ -273,10 +273,11 @@ document.querySelector('.b-14').addEventListener('click', checkOption);
 
 //переменная была объявлена мной в задании 11
 // const select = formOneElements[2];
-console.log(select.options[2].value);
 
-makeFifteen = () =>	select.selectedIndex = 2;
-makeFifteen();
+// console.log(select.options[2].value);
+
+// makeFifteen = () =>	select.selectedIndex = 2;
+// makeFifteen();
 
 //или:
 // function makeFifteen() {
@@ -292,10 +293,10 @@ makeFifteen();
 //- Используйте свойство checked элемента checkbox, чтобы установить его выбранным по умолчанию
 //- Установите значение checked равным true для выбранного варианта
 
-function makeSixteen() {
-	//Ваш код
-}
+//переменную объявила в задании 12
+// const checkbox3 = formTwo.elements.checkboxThree;
 
+makeSixteen = () => checkbox3.checked = true;
 makeSixteen();
 
 //Задание 17
@@ -308,11 +309,21 @@ makeSixteen();
 //- Добавьте слушатель события submit к форме, чтобы выполнить проверку перед отправкой
 //- В обработчике события вызовите метод event.preventDefault() для отмены отправки формы в случае ошибки
 
-formOne.addEventListener('submit', function (event) {
-	event.preventDefault(); //Отмена отправки
+//переменную объявила в задании 8
+//const formOneElements = document.forms[0].elements;
 
-	const formOne = document.forms.formOne;
-	//Ваш код
+const inputName = formOneElements[0];
+const inputEmail = formOneElements[1];
+
+formOne.addEventListener('submit', function (event) {
+	const errorMessage = document.getElementById('errorMessage');
+	if (inputName.value.length === 0) {
+		event.preventDefault(); //Отмена отправки
+		errorMessage.textContent = 'Заполните поле "Имя"';
+	} else if (inputEmail.value.length === 0) {
+		event.preventDefault(); //Отмена отправки
+		errorMessage.textContent = 'Заполните поле "Email"'
+	}
 });
 
 //Задание 18
@@ -325,6 +336,14 @@ formOne.addEventListener('submit', function (event) {
 
 //Ваш код
 
+// formOne.addEventListener('submit', function (event) {
+// 	formOne.reset();
+// 	event.preventDefault();
+// });
+
+//не совсем поняла, что от меня требуется в 18м задании, потому что в 17м задании при успешном заполнении форм после их отправки поля и так очищаются
+
+
 //Задание 19
 //При выборе определенной опции из выпадающего списка измените цвет фона страницы
 //Подсказка:
@@ -333,9 +352,20 @@ formOne.addEventListener('submit', function (event) {
 //- В обработчике события, используя условные операторы (if), проверьте выбранную опцию
 //- В зависимости от выбранной опции, измените цвет фона страницы, используя свойство document.body.style.backgroundColor
 
-const selectElement = document.getElementById('colorSelector');
+//переменная была объявлена мной в задании 11
+// const select = formOneElements[2];
 
-//Ващ код
+// const selectElement = document.getElementById('colorSelector'); //видимо, по ошибке здесь оставили эту строку
+
+select.addEventListener('change', function () {
+	if (select.options[0].selected) {
+		document.body.style.background = '#09ed27';
+	} else if (select.options[1].selected) {
+		document.body.style.background = '#ffff00';
+	} else if (select.options[2].selected) {
+		document.body.style.background = '#ff0000';
+	}	
+});
 
 //Задание 20
 //Добавьте валидацию для поля Email
@@ -347,7 +377,7 @@ const selectElement = document.getElementById('colorSelector');
 //- В зависимости от результата проверки, измените стиль поля Email (например, установите класс с ошибкой) и отобразите сообщение об ошибке в элементе <p> (добавьте элемент самостоятельно) с помощью свойства textContent.
 
 const emailInput = document.forms.formOne.elements.firstEmail;
-const errorMessage = document.getElementById('errorMessage');
+// const errorMessage = document.getElementById('errorMessage');
 
 //Ваш код
 
