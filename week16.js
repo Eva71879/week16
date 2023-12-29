@@ -151,11 +151,10 @@ document.querySelector('.b-9').addEventListener('click', makeNine);
 
 //наверное, имелась ввиду четвертая форма - только в ней есть radio
 
-function makeTen() {
-	const paragraphTen = document.getElementById('practicum10');
-	const radioValue = document.forms[3].elements[0].value;
-	paragraphTen.textContent = radioValue;
-}
+const lastForm = document.forms[3];
+const paragraphTen = document.getElementById('practicum10');
+
+makeTen = () => paragraphTen.textContent = lastForm.elements[0].value;
 
 document.querySelector('.b-10').addEventListener('click', makeTen);
 
@@ -173,10 +172,8 @@ document.querySelector('.b-10').addEventListener('click', makeTen);
 // const formOneElements = document.forms[0].elements;
 
 const paragraphEleven = document.getElementById('practicum11');
-console.log(formOneElements[2]);
 const select = formOneElements[2];
 let optionsValues = '';
-console.log(select[0].value);
 let selectValues = [];
 
 makeEleven = () => {
@@ -189,8 +186,6 @@ makeEleven = () => {
 
 document.querySelector('.b-11').addEventListener('click', makeEleven);
 
-
-
 //Задание 12
 //Выведите значения атрибутов id всех чекбоксов (количество: 3) из второй формы
 //Подсказка:
@@ -198,12 +193,27 @@ document.querySelector('.b-11').addEventListener('click', makeEleven);
 //- Получите доступ к чекбоксам с помощью form.elements и сохраните их в переменные
 //- Получите значения атрибутов id всех чекбоксов второй формы
 
+const formTwo = document.forms.formTwo;
+const checkbox1 = formTwo.elements.checkboxOne;
+const checkbox2 = formTwo.elements.checkboxTwo;
+const checkbox3 = formTwo.elements.checkboxThree;
+const checkboxIds = [];
+checkboxIds.push(checkbox1.id, checkbox2.id, checkbox3.id);
+let formTwoIds = '';
+formTwoIds = checkboxIds.join(', ');
+
 function makeTwelve() {
 	const paragraphTwelve = document.getElementById('practicum12');
-	//Ваш код
+	paragraphTwelve.textContent = formTwoIds;
 }
 
 document.querySelector('.b-12').addEventListener('click', makeTwelve);
+
+//или (но в задании было написано создать отдельные переменные каждому чекбоксу)
+
+// const checkboxes = formTwo.querySelectorAll('input[type="checkbox"]');
+// const checkboxIds = Array.from(checkboxes).map(checkbox => checkbox.id);
+// const formTwoIds = checkboxIds.join(', ');
 
 // Задание 13
 //Проверьте была ли выбрана кнопка четвёртой формы
@@ -214,14 +224,19 @@ document.querySelector('.b-12').addEventListener('click', makeTwelve);
 //- Если кнопка выбрана, выведите сообщение "Кнопка выбрана" на страницу
 //- Если кнопка не выбрана, выведите сообщение "Кнопка не выбрана" на страницу
 
+const lastFormRadio = lastForm.elements[0];
+const paragraphThirteen = document.getElementById('practicum13');
 function checkButton(e) {
 	e.preventDefault();
-
-	const paragraphThirteen = document.getElementById('practicum13');
-	//Ваш код
+	if (lastFormRadio.checked) {
+		paragraphThirteen.textContent = 'Кнопка выбрана';
+	} else {
+		paragraphThirteen.textContent = 'Кнопка не выбрана';
+	}
 }
 
 document.querySelector('.b-13').addEventListener('click', checkButton);
+
 
 //Задание 14
 //Выведите на экран название выбранного варианта в первой форме
@@ -232,9 +247,18 @@ document.querySelector('.b-13').addEventListener('click', checkButton);
 //- Используйте свойство value выбранной опции для получения выбранного варианта
 //- Напишите проверку, которая используя условный оператор (if) будет выводить в элемент paragraphFourteen название выбранного варианта
 
-function checkOption() {
-	const paragraphFourteen = document.getElementById('practicum14');
-	//Ваш код
+//переменная была объявлена мной в задании 11
+// const select = formOneElements[2];
+const paragraphFourteen = document.getElementById('practicum14');
+
+function checkOption(evt) {
+	evt.preventDefault();
+	if (select.value) {
+		paragraphFourteen.textContent = 'Название выбранного варианта: ' + select.value;
+	}
+	// paragraphFourteen.textContent = select.value
+	// ? 'Название выбранного варианта: ' + select.value
+	// : 'Элемент не выбран'; //тренирую тернарный оператор
 }
 
 document.querySelector('.b-14').addEventListener('click', checkOption);
@@ -247,11 +271,18 @@ document.querySelector('.b-14').addEventListener('click', checkOption);
 //- Используйте свойство selectedIndex элемента select, чтобы установить выбранный индекс опции по умолчанию
 //- Установите значение selectedIndex равным индексу опции, которую вы хотите выбрать по умолчанию
 
-function makeFifteen() {
-	//Ваш код
-}
+//переменная была объявлена мной в задании 11
+// const select = formOneElements[2];
+console.log(select.options[2].value);
 
+makeFifteen = () =>	select.selectedIndex = 2;
 makeFifteen();
+
+//или:
+// function makeFifteen() {
+// 	select.options[2].selected = true;
+// }
+// makeFifteen();
 
 //Задание 16
 //Добавьте во вторую форму выбранный Вариант 3 по умолчанию
