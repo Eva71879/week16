@@ -193,21 +193,21 @@ document.querySelector('.b-11').addEventListener('click', makeEleven);
 //- Получите доступ к чекбоксам с помощью form.elements и сохраните их в переменные
 //- Получите значения атрибутов id всех чекбоксов второй формы
 
-const formTwo = document.forms.formTwo;
-const checkbox1 = formTwo.elements.checkboxOne;
-const checkbox2 = formTwo.elements.checkboxTwo;
-const checkbox3 = formTwo.elements.checkboxThree;
-const checkboxIds = [];
-checkboxIds.push(checkbox1.id, checkbox2.id, checkbox3.id);
-let formTwoIds = '';
-formTwoIds = checkboxIds.join(', ');
+// const formTwo = document.forms.formTwo;
+// const checkbox1 = formTwo.elements.checkboxOne;
+// const checkbox2 = formTwo.elements.checkboxTwo;
+// const checkbox3 = formTwo.elements.checkboxThree;
+// const checkboxIds = [];
+// checkboxIds.push(checkbox1.id, checkbox2.id, checkbox3.id);
+// let formTwoIds = '';
+// formTwoIds = checkboxIds.join(', ');
 
-function makeTwelve() {
-	const paragraphTwelve = document.getElementById('practicum12');
-	paragraphTwelve.textContent = formTwoIds;
-}
+// function makeTwelve() {
+// 	const paragraphTwelve = document.getElementById('practicum12');
+// 	paragraphTwelve.textContent = formTwoIds;
+// }
 
-document.querySelector('.b-12').addEventListener('click', makeTwelve);
+// document.querySelector('.b-12').addEventListener('click', makeTwelve);
 
 //или (но в задании было написано создать отдельные переменные каждому чекбоксу)
 
@@ -377,28 +377,47 @@ select.addEventListener('change', function () {
 //- В зависимости от результата проверки, измените стиль поля Email (например, установите класс с ошибкой) и отобразите сообщение об ошибке в элементе <p> (добавьте элемент самостоятельно) с помощью свойства textContent.
 
 const emailInput = document.forms.formOne.elements.firstEmail;
-// const errorMessage = document.getElementById('errorMessage');
+const errorMessage = document.getElementById('errorMessage');
 
-//Ваш код
+emailInput.addEventListener('input', function () {
+	const emailValue = emailInput.value;
+	const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+
+	if (emailRegex.test(emailValue)) {
+		errorMessage.classList.remove('error-message');
+		errorMessage.textContent = '';
+	} else {
+		errorMessage.classList.add('error-message');
+		errorMessage.textContent = 'Некорректный формат email'
+	}
+});
 
 //Задание 21
 //При отправке второй формы выполните проверку всех чекбоксов. Если ни один из чекбоксов не выбран, отмените отправку формы и выведите сообщение об ошибке в элементе с id "result21".
+const checkbox1 = document.getElementById('checkbox1').checked;
+const result21 = document.getElementById('result21');
 
 document.forms.formTwo.addEventListener('submit', function (evt) {
-	evt.preventDefault();
-
+	evt.preventDefault();	
 	const checkbox1 = document.getElementById('checkbox1').checked;
 	const checkbox2 = document.getElementById('checkbox2').checked;
 	const checkbox3 = document.getElementById('checkbox3').checked;
-	//Ваш код
+	if (checkbox1 == false || checkbox2 == false || checkbox3 == false) {
+		result21.textContent = 'Выберите один из вариантов';
+	}
 });
 
 //Задание 22
 //При отправке третьей формы выполните проверку поля Имя на заполненность. Если поле Имя пустое, отмените отправку формы и выведите сообщение об ошибке в элементе с id "result22".
 
+const result22 = document.getElementById('result22');
+
 document.querySelector('.b-22').onclick = function (event) {
+	event.preventDefault();
 	const nameInput = document.forms.formThree.elements.thirdName;
-	//Ваш код
+	if (nameInput.value == false) {
+		result22.textContent = 'Заполните поле "Имя"';
+	}
 };
 
 //Задание 23
