@@ -424,11 +424,22 @@ document.querySelector('.b-22').onclick = function (event) {
 //При выборе опции "Я хочу зарегистрироваться" в четвёртой форме кнопка должна быть разблокирована. В противном случае, сделайте кнопку отправки формы заблокированной.
 //Подсказка: используйте свойство disabled
 
+//переменная была объявлена в задании 13:
+// const lastFormRadio = lastForm.elements[0];
+const submitButton = lastForm.elements.fourthButton;
+submitButton.disabled = true;
+
+lastFormRadio.addEventListener('change', function() {
+		submitButton.disabled = !lastFormRadio.checked;
+});
+
 //Задание 24
 //Найдите все поля ввода на странице (querySelectorAll) и установите им атрибут "placeholder" со значением "Введите данные" (используйте метод forEach).
 
+const allInputs = document.querySelectorAll('input');
+console.log(allInputs);
 document.querySelector('.b-24').addEventListener('click', function () {
-	//Ваш код
+	allInputs.forEach(item => item.placeholder = 'Введите данные')
 });
 
 //Задание 25
@@ -438,7 +449,12 @@ document.querySelector('.b-25').addEventListener('click', function () {
 	const inputs = document.querySelectorAll('input');
 
 	inputs.forEach(function (input) {
-		//Ваш код
+		input.addEventListener('focus', function () {
+			input.style.border = '1px solid #00ff00';
+		});
+		input.addEventListener('blur', function () {
+			input.style.border = '';
+		});
 	});
 });
 
@@ -447,7 +463,7 @@ document.querySelector('.b-25').addEventListener('click', function () {
 
 document.querySelector('.b-26').addEventListener('click', function (event) {
 	event.preventDefault();
-	//Ваш код
+	document.getElementById('result26').textContent = formThree.elements.thirdName.placeholder;
 });
 
 //Задание 27
@@ -457,15 +473,22 @@ const formTwoInputs = document.querySelectorAll('.secondForm input');
 
 formTwoInputs.forEach(function (input) {
 	input.addEventListener('input', function () {
-		//Ваш код
+		if (input.value) {
+			document.getElementById('result27').textContent = 'Изменение внесено'
+		}
 	});
 });
 
+// formTwoInputs.forEach(function (input) {
+// 	input.addEventListener('input', () => document.getElementById('result27').textContent = inputValue ? 'Изменение внесено' : '');
+// }); //с тернарным оператором в виде стрелочной функции
+
 //Задание 28
 //При выборе любой из опций выпадающего списка в третьей форме отобразите сообщение с текстом "Опция выбрана" в элементе с id "result28"
+//наверное имелась ввиду все-таки первая форма//
 
 const selectFormThree = document.getElementById('firstSelect');
 
 selectFormThree.addEventListener('change', function () {
-	//Ваш код
+	document.getElementById('result28').textContent = 'Опция выбрана';
 });

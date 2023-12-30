@@ -193,7 +193,7 @@ label {
 
 .error-message {
 	width: 180px;
-	color: red;
+	color: #ff0000;
 }
 
 .form__submit {
