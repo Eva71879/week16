@@ -402,8 +402,8 @@ document.forms.formTwo.addEventListener('submit', function (evt) {
 	const checkbox1 = document.getElementById('checkbox1').checked;
 	const checkbox2 = document.getElementById('checkbox2').checked;
 	const checkbox3 = document.getElementById('checkbox3').checked;
-	if (checkbox1 == false || checkbox2 == false || checkbox3 == false) {
-		result21.textContent = 'Выберите один из вариантов';
+	if (!checkbox1 || !checkbox2 || !checkbox3) {
+		result21.textContent = 'Выберите хотя бы один из вариантов';
 	}
 });
 
@@ -437,7 +437,6 @@ lastFormRadio.addEventListener('change', function() {
 //Найдите все поля ввода на странице (querySelectorAll) и установите им атрибут "placeholder" со значением "Введите данные" (используйте метод forEach).
 
 const allInputs = document.querySelectorAll('input');
-console.log(allInputs);
 document.querySelector('.b-24').addEventListener('click', function () {
 	allInputs.forEach(item => item.placeholder = 'Введите данные')
 });

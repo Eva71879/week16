@@ -1,0 +1,35 @@
+body {
+	font-size: 25px;
+    
+}
+
+
+.container {
+    display: flex;
+   
+}
+
+section {
+    margin: 0 auto;
+}
+
+h2, .name, .email, .age, .gender, .profession, .password, .checkbox, .submit {
+    margin: 35px;
+}
+
+.profession {
+}
+
+.gender__options {
+    display: flex;
+}
+
+.submit {
+    color: green;
+    background-color: yellow;
+}
+
+.error {
+    color: red;
+    /* display: none; */
+  }
