@@ -17,8 +17,8 @@ h2, .name, .email, .age, .gender, .profession, .password, .checkbox, .submit {
     margin: 35px;
 }
 
-.profession {
-}
+/* .profession {
+} */
 
 .gender__options {
     display: flex;

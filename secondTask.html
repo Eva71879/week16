@@ -26,7 +26,7 @@
               title="Пожалуйста, введите только буквы и пробелы"
               required
             />*
-            <p class="error" id="usernameError"></span>
+            <p class="error" id="usernameError">**</span>
             <br />
           </div>
 
@@ -37,7 +37,7 @@
               id="email"
               name="email"
               placeholder="Ваш email"
-              pattern="/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i"
+              pattern="[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}"
               title="адрес должен содержать символ '@' и доменное имя"
               required
             />*
@@ -61,8 +61,8 @@
           <div class="gender">
             <label for="gender">Ваш пол</label>
             <div class="gender__options">
-              <input type="radio" name="gender" value="woman" />Женщина
-              <input type="radio" name="gender" value="man" />Мужчина
+              <input type="radio" name="gender" value="Женщина" checked />Женщина
+              <input type="radio" name="gender" value="Мужчина" />Мужчина
             </div>
 
             <br />
@@ -97,7 +97,7 @@
               id="password"
               placeholder="Введите пароль"
               minlength="8"
-              pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}"
               title="Пароль должен содержать минимум одну заглавную букву, одну строчную букву и одну цифру"
               required
             />

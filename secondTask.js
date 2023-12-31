@@ -1,67 +1,92 @@
-
-//     2 Добавьте стили для формы
-    
-//     3 Используя JavaScript, добавьте обработчик события отправки формы (`submit`), который будет выполнять следующие действия:
-
 const form = document.forms.form;
 const userNameInput = form.elements.userName;
+const email = form.elements.email;
+const age = form.elements.age;
+const gender = form.elements.gender;
+const profession = form.elements.profession;
+const password = form.elements.password;
+const checkbox = form.elements.checkbox;
+
+const submitButton = form.elements.submit;
+submitButton.disabled = true;
+
 const userNameError = document.getElementById('usernameError');
-console.log(userNameError);
+
+let userNameRegex = /[A-Za-z\s]+/;
+let emailRegex = /^\w+@\w+\.\w+$/;
+let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
+
+console.log(emailRegex.test('test@example.com'));
+console.log(passwordRegex.test('Abcd123!'));
+
 
 form.addEventListener('submit', function (event) {
+    // - Отменять действие по умолчанию для события `submit`
 	event.preventDefault();
+
+
+    if (userNameRegex.test(userNameInput.value) &&
+    emailRegex.test(email.value) && 
+    age != '' &&
+    passwordRegex.test(password.value) && 
+    checkbox.checked) {
+    // - Если форма проходит проверку валидности, выводите в консоль значения полей формы и очищайте форму
+    console.log(
+        userNameInput.value,
+        email.value,
+        age.value,
+        gender.value,
+        profession.value,
+        password.value,
+        checkbox.value
+    );
+    form.reset();
+    alert('Форма успешно отправлена!');
+
+}
+
+// - Отображать сообщение об ошибке рядом с каждым полем при обнаружении ошибки валидации
     let hasError = false;
 
     userNameError.style.display = 'none';
 
-    if (userNameInput.value = '') {
+    if (userNameInput.value === '') {
         userNameError.textContent = 'Введите имя';
         userNameError.style.display = 'block';
         hasError = true;
     }
     
     if (hasError === false) {
-        alert('Форма успешно отправлена!');
+    
       }
 });
 
-function validateName(name) {
-    let regex = /[A-Za-z\s]+/;
-    return regex.test(name);
-  };
 
-
-const emailInput = document.forms.formOne.elements.firstEmail;
-const errorMessage = document.getElementById('errorMessage');
-
-form.addEventListener('input', function () {
-	const nameValue = name.value;
-	const nameRegex = /[A-Za-z\s]+/;
-
-	if (nameRegex.test(nameValue)) {
-		errorMessage.classList.remove('error-message');
-		errorMessage.textContent = '';
-	} else {
-		errorMessage.classList.add('error-message');
-		errorMessage.textContent = 'Некорректный формат имени'
-	}
+// - Кнопка отправки должна быть неактивна (`disabled`), пока все поля формы не будут правильно заполнены и не будет отмечен чекбокс согласия с условиями
+checkbox.addEventListener('change', function() {
+    if (userNameRegex.test(userNameInput.value) &&
+        emailRegex.test(email.value) && 
+        age != '' &&
+        passwordRegex.test(password.value) && 
+        checkbox.checked) {
+        submitButton.disabled = false;
+    }
 });
 
-    
-//     - Отображать сообщение об ошибке рядом с каждым полем при обнаружении ошибки валидации
-//     - Кнопка отправки должна быть неактивна (`disabled`), пока все поля формы не будут правильно заполнены и не будет отмечен чекбокс согласия с условиями
-//     - Если форма проходит проверку валидности, выводите в консоль значения полей формы и очищайте форму
-    
-//     4 Бонусное задание: реализуйте дополнительные обработчики событий `focus` и `blur` для каждого поля
+// 4 Бонусное задание: реализуйте дополнительные обработчики событий `focus` и `blur` для каждого поля
+	const inputs = document.querySelectorAll('input');
+
+	inputs.forEach(function (input) {
+		input.addEventListener('focus', function () {
+			input.style.border = '10px solid #00ff25';
+		});
+		input.addEventListener('blur', function () {
+			input.style.border = '';
+		});
+	});
 
 
-// formOne.addEventListener('submit', function (event) {
-// 	const errorMessage = document.getElementById('errorMessage');
-// 	if (inputName.value.length === 0) {
-// 		event.preventDefault(); //Отмена отправки
-// 		errorMessage.textContent = 'Заполните поле "Имя"';
-// 	} else if (inputEmail.value.length === 0) {
-// 		event.preventDefault(); //Отмена отправки
-// 		errorMessage.textContent = 'Заполните поле "Email"'
-// 	}
-// });
+
+
+
+
